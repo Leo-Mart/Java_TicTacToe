@@ -4,3 +4,4 @@ TODO:
 
 - [ ] Add Computer players of varying difficulty.
 - [ ] Some input validation?
+- [ ] Test if the running loop is redundant?

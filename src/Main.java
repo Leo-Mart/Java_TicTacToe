@@ -26,6 +26,7 @@ public class Main {
             game.startGame(p1.getPlayerName());
             Player currentPlayer = p1;
 
+            // is this loop slightly redundant? At least the running, it should stop if there is a winner still.
             while (running && winner == null) {
                 board.drawBoard();
                 game.askForInput(currentPlayer);
@@ -55,14 +56,27 @@ public class Main {
                         roundNumber++;
                     } else {
                         keepPlaying = false;
+                        running = false;
                         System.out.println("Thanks for playing");
                     }
-                    running = false;
+
                 }
 
                 if (board.isBoardFull() && winner == null) {
                     System.out.println("The board is full, it's a draw!");
-                    running = false;
+
+                    // duplicate code, maybe build a method for this instead?
+                    System.out.println("Do you wish to play again? [Y/N]");
+                    String choice = sc.nextLine();
+
+                    if (choice.equalsIgnoreCase("y")) {
+                        System.out.println("Restarting game!");
+                        roundNumber++;
+                    } else {
+                        keepPlaying = false;
+                        running = false;
+                        System.out.println("Thanks for playing");
+                    }
                 }
 
             }
